@@ -1,0 +1,50 @@
+stages:
+  - prepare
+  - build
+  - rsync
+
+cloud-prepare:
+  stage: prepare
+  only:
+      - qa
+  script:
+      - med prepare -n node-ssr-react-prepare
+
+cloud-build:
+  stage: build
+  only:
+      - qa
+  script:
+      - med build -n node-ssr-react-node-build
+      - med build -n node-ssr-react-web-build
+
+cloud-push:
+  stage: rsync
+  only:
+      - qa
+  script:
+      - med deploy -n node-ssr-react-deploy
+
+
+
+cloud-online-prepare:
+  stage: prepare
+  only:
+      - online
+  script:
+      - med prepare -n node-ssr-react-prepare
+
+cloud-online-build:
+  stage: build
+  only:
+      - online
+  script:
+      - med build -n node-ssr-react-node-build
+      - med build -n node-ssr-react-web-build
+
+cloud-online-push:
+  stage: rsync
+  only:
+      - online
+  script:
+      - med push -n node-ssr-react-deploy

@@ -1,0 +1,7 @@
+dev:
+  env: qa
+  replicas: 1
+
+online:
+  env: online
+  replicas: 2

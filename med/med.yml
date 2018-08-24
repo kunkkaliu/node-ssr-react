@@ -1,0 +1,57 @@
+repo:
+  name: node-ssr-react
+  project: aftermarket
+  namespace: default
+
+prepare:
+- image: library/node:v9.11.1-21080416
+  name: node-ssr-react-prepare
+  workdir: /data/www/node_ssr_react
+  version: v1.0.0
+  copy:
+    - ./package.json /data/www/node_ssr_react/
+    - ./yarn.lock /data/www/node_ssr_react/
+  run:
+    - yarn config set registry https://registry.npm.taobao.org &&
+      yarn global add pm2 &&
+      yarn
+
+build:
+- workdir: /data/www/node_ssr_react
+  name: node-ssr-react-node-build
+  base: node-ssr-react-prepare
+  ignore:
+    - .git
+  copy:
+    - . /data/www/node_ssr_react
+  run:
+    - yarn build_{{env}}
+
+- image: library/nginx:latest
+  workdir: /data/www/node_ssr_react
+  name: node-ssr-react-web-build
+  copy:
+    - ./nginx.conf /etc/nginx/conf.d/default.conf
+    - ./entrypoint.sh /data/www/node_ssr_react/entrypoint.sh
+
+deploy:
+- name: node-ssr-react-deploy
+  sidecar:
+    - name: node-ssr-react-node-deploy
+    - name: node-ssr-react-web-deploy
+  replicas: {{replicas}}
+  domains: node-ssr-react
+
+- name: node-ssr-react-node-deploy
+  base: node-ssr-react-node-build
+  command: "yarn server"
+  replicas: {{replicas}}
+
+- name: node-ssr-react-web-deploy
+  base: node-ssr-react-web-build
+  command: /data/www/node_ssr_react/entrypoint.sh
+  replicas: {{replicas}}
+  rules:
+    - port: 80
+      name: http
+      path: /.*
