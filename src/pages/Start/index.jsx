@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../../components/Footer';
+import img1 from '../../assets/images/avatar.jpeg';
 
 export default class Start extends React.Component {
     static propTypes = {
@@ -13,6 +14,7 @@ export default class Start extends React.Component {
             <div className="start-container">
                 <p>this is start page!</p>
                 <p> hello {name}</p>
+                <img src={img1} />
                 <Footer></Footer>
             </div>
         );

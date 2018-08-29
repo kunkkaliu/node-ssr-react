@@ -9,6 +9,11 @@ require('babel-register')({
     plugins: []
 });
 require('./ignore')();
+require('asset-require-hook')({
+    extensions: ['jpg', 'jpeg', 'png', 'gif'],
+    limit: 10240,
+    name: '/static/images/[name].[hash:8].[ext]'
+});
 const path = require('path');
 const Koa = require('koa');
 const webpack = require('webpack');
