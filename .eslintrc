@@ -18,7 +18,7 @@
   "extends": ["airbnb-base", "plugin:react/recommended"],
   "rules": {
     "react/jsx-uses-react": "error",
-    "react/prop-types": "error",
+    "react/prop-types": "off",
     "jsx-a11y/no-static-element-interactions": "warn",
     "indent": ["error", 4, {
       "SwitchCase": 1
