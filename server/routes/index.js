@@ -9,11 +9,11 @@ const router = new Router();
 // const isDeveloping = process.env.NODE_ENV === 'development';
 // const assets = !isDeveloping ? JSON.parse(fs.readFileSync('./dist/assets.json')) : null;
 
-const startRouter = require('./start').default;
+const listRouter = require('./list').default;
 const detailRouter = require('./detail').default;
 const loginRouter = require('./login').default;
 
-startRouter(router, koaCache);
+listRouter(router, koaCache);
 detailRouter(router, koaCache);
 loginRouter(router, koaCache);
 

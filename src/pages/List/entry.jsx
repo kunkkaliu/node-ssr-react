@@ -5,9 +5,9 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import 'common/less/base.less';
-import Start from './index';
+import List from './index';
 
-hydrate(<Start name={window.INITIAL_STATE && window.INITIAL_STATE.name}></Start>, document.getElementById('root'));
+hydrate(<List records={window.INITIAL_STATE && window.INITIAL_STATE.records}></List>, document.getElementById('root'));
 
 if (module.hot) {
     module.hot.accept();

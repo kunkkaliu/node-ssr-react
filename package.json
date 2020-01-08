@@ -11,7 +11,8 @@
     "build_qa": "rimraf ./dist && cross-env CODE_ENV=qa npm run build_client && cross-env CODE_ENV=qa npm run build_server",
     "build_online": "rimraf ./dist && cross-env CODE_ENV=online npm run build_client && cross-env CODE_ENV=online npm run build_server",
     "analyze": "cross-env ANALYZE=1 npm run build_client",
-    "dev": "cross-env CODE_ENV=dev REACT_ENV=server nodemon ./server/app.dev.js --watch server --watch build",
+    "mock": "cross-env MOCK=1 npm run dev",
+    "dev": "cross-env CODE_ENV=dev REACT_ENV=server node ./server/app.dev.js --watch server --watch build",
     "start": "cross-env node ./dist/server/index",
     "server": "pm2 start ./pm2config.json --env production --no-daemon",
     "online": "pm2 start ./pm2config.json --env production"
@@ -59,12 +60,14 @@
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
+    "axios": "^0.19.1",
     "babel-polyfill": "6.26.0",
     "koa": "2.5.0",
     "koa-compress": "3.0.0",
     "koa-router": "7.4.0",
     "koa-static-cache": "5.1.2",
     "lru-cache": "4.1.2",
+    "mockjs": "^1.1.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "supports-color": "5.4.0"
