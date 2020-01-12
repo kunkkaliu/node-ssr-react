@@ -1,6 +1,78 @@
-@import '../../common/less/remcss.less';
+@import '../../common/less/minirefresh.less';
 
-.div1 {
-  .px2rem(height, 100);
-  background-color: darkgray;
+.container {
+  min-height: 100%;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.list-items-wrap {
+  position: relative;
+  padding: 40px 0;
+}
+
+.list-item {
+  background-color: #fff;
+  padding: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.list-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-img {
+  width: 160px;
+  height: 160px;
+}
+
+.item-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.item-intro {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+}
+
+.item-intro .item-title {
+  color: #333333;
+  font-size: 32px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-wrap: break-word;
+  
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all; */
+}
+
+.item-intro .item-desc {
+  font-size: 28px;
+  color: #EB5424;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-wrap: break-word;
+}
+
+.item-intro .item-source {
+  font-size: 26px;
+  color: #666;
 }

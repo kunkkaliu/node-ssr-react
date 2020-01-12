@@ -27,14 +27,14 @@ function getEntry(globPath, pathDir) {
         basename = path.basename(entry, extname);
         pathname = path.join(dirname, basename);
         pathname = pathDir ? pathname.replace(pathDir, '') : pathname;
-        key = pathname.split('/')[0].toLowerCase();
+        key = pathname.split('\\')[0].toLowerCase();
         entries[key] = entry;
     }
     return entries;
 }
 //我们的key不是简单用的上一个代码的index,login而是用的index/index,login/login因为考虑在login目录下面还有register
 //文件路径的\\和/跟操作系统也有关系，需要注意
-var entries = getEntry('./src/pages/*/entry.jsx', 'src/pages/');
+var entries = getEntry('.\\src\\pages\\*\\entry.jsx', 'src\\pages\\');
 var HtmlPlugin = [];
 var pageTitles = {
     list: '列表页',

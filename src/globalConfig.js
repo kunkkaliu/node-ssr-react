@@ -1,14 +1,14 @@
 /**
  * Created by liudonghui on 2018/6/11.
  */
-let apiHost = '//zudapang.ltd/api';
+let apiHost = 'https://zudapang.ltd/api';
 let apiServerHost = 'https://zudapang.ltd/api';
 
 if (process.env.CODE_ENV === 'qa') {
-    apiHost = '//zudapang.ltd/api';
+    apiHost = 'https://zudapang.ltd/api';
     apiServerHost = 'https://zudapang.ltd/api';
 } else if (process.env.CODE_ENV === 'online') {
-    apiHost = '//zudapang.ltd/api';
+    apiHost = 'https://zudapang.ltd/api';
     apiServerHost = 'https://zudapang.ltd/api';
 }
 

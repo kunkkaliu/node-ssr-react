@@ -11,7 +11,6 @@ const koaRender = (basePath, isDev, devMiddleWare) => {
             ctx.type = 'text/html';
 
             if (isDev) {
-                console.log("======", filePath)
                 const mfs = devMiddleWare.fileSystem;
                 return new Promise((resolve) => {
                     devMiddleWare.waitUntilValid(function () {

@@ -12,7 +12,7 @@ const koaCache = (duration) => {
     return async (ctx, next) => {
         const now = new Date().getTime();
         let url = ctx.originalUrl || ctx.url || '';
-        const key = '__koa_ssr__' + url.split('?')[0];
+        const key = '__koa_ssr__' + url;
         const cachedBody = mcache.get(key);
         if (cachedBody) {
             ctx.type = 'text/html';
