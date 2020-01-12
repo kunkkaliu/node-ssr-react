@@ -37,9 +37,9 @@ function getEntry(globPath, pathDir) {
 var entries = getEntry('.\\src\\pages\\*\\entry.jsx', 'src\\pages\\');
 var HtmlPlugin = [];
 var pageTitles = {
-    list: '列表页',
+    list: '资讯列表',
     login: '登陆页',
-    detail: '详情页'
+    detail: '资讯详情'
 };
 
 for (var key in entries) {

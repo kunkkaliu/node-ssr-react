@@ -2,8 +2,8 @@
   "apps": [
     {
       "name": "node-ssr-react",
-      "cwd": "/data/www/node_ssr_react",
-      "script": "/data/www/node_ssr_react/dist/server/index.js",
+      "cwd": "./",
+      "script": "./dist/server/index.js",
       "env": {
         "NODE_ENV": "production"
       },
