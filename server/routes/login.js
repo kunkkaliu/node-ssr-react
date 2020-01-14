@@ -7,7 +7,7 @@ import Login from '../../src/pages/Login';
 
 const loginRouter = (router, koaCache) => {
     router.get('/login', koaCache(10 * 60), async (ctx, next) => {
-        const renderContent = renderToString(<Login/>);
+        const renderContent = renderToString(<Login />);
         await ctx.render('login', renderContent);
     });
 };

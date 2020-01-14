@@ -13,8 +13,8 @@ const listRouter = (router, koaCache) => {
         const res = await api.get('/hotnews/list', {
             params: {
                 pageNum,
-            }
-        }).catch(err => {});
+            },
+        }).catch((err) => {});
         
         let useTime = new Date().getTime() - startTime;
         if (useTime > 500) {

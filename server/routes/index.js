@@ -12,9 +12,11 @@ const router = new Router();
 const listRouter = require('./list').default;
 const detailRouter = require('./detail').default;
 const loginRouter = require('./login').default;
+const flvRouter = require('./flv').default;
 
 listRouter(router, koaCache);
 detailRouter(router, koaCache);
 loginRouter(router, koaCache);
+flvRouter(router, koaCache);
 
 module.exports = router;

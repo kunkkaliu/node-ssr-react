@@ -17,14 +17,13 @@ const replaceDetail = (details) => {
         }
     }
     texts += details;
-    return texts
+    return texts;
 }
 
 const detailRouter = (router, koaCache) => {
     router.get('/detail', koaCache(10 * 60), async (ctx, next) => {
         let startTime = new Date().getTime();
-        const { articleId = '5483008' } = ctx.query;
-        console.log(articleId)
+        const { articleId = '' } = ctx.query;
         const res = await api.get('/hotnews/detail', {
             params: {
                 articleId,
