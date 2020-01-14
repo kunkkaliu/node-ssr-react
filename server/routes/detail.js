@@ -12,13 +12,13 @@ const replaceDetail = (details) => {
         texts += details.substring('0', details.indexOf('<img') + 4);
         details = details.substring(details.indexOf('<img') + 4);
         if (details.indexOf('src=') != -1 && details.indexOf('src=') < details.indexOf('>')) {
-            texts += details.substring(0, details.indexOf('src="') + 5) + "https://zudapang.ltd/api/hotnews/image?imgUrl=";
+            texts += details.substring(0, details.indexOf('src="') + 5) + 'https://api.zudapang.ltd/hotnews/image?imgUrl=';
             details = details.substring(details.indexOf('src="') + 5);
         }
     }
     texts += details;
     return texts;
-}
+};
 
 const detailRouter = (router, koaCache) => {
     router.get('/detail', koaCache(10 * 60), async (ctx, next) => {
@@ -27,8 +27,8 @@ const detailRouter = (router, koaCache) => {
         const res = await api.get('/hotnews/detail', {
             params: {
                 articleId,
-            }
-        }).catch(err => {});
+            },
+        }).catch((err) => {});
         
         let useTime = new Date().getTime() - startTime;
         if (useTime > 500) {
@@ -38,6 +38,7 @@ const detailRouter = (router, koaCache) => {
         let title = '', content = '';
         const resData = res.data || {};
         if (resData.code === 0 && resData.data) {
+            // eslint-disable-next-line prefer-destructuring
             title = resData.data.title;
             content = replaceDetail(resData.data.content);
         }
