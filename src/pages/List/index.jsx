@@ -65,6 +65,30 @@ export default function List(props) {
         });
     }, []);
 
+    useEffect(() => {
+        const storageRecords = localStorage.getItem('hotnews_records_key');
+        const storagePage = localStorage.getItem('hotnews_page_key');
+        const storageScrollTop = localStorage.getItem('hotnews_scrolltop_key');
+
+        if (storageScrollTop && storageRecords) {
+            setRecords(JSON.parse(records));
+            // eslint-disable-next-line radix
+            setPageNum(parseInt(storagePage));
+        }
+        setTimeout(() => {
+            // eslint-disable-next-line radix
+            refreshRef.current.scrollTo(parseInt(storageScrollTop), 1000);
+            localStorage.removeItem('hotnews_scrolltop_key');
+        }, 100);
+    }, []);
+
+    function goToDetail(id) {
+        localStorage.setItem('hotnews_records_key', JSON.stringify(records));
+        localStorage.setItem('hotnews_page_key', pageNum);
+        localStorage.setItem('hotnews_scrolltop_key', document.documentElement.scrollTop);
+        window.location.href = `/detail?articleId=${id}`;
+    }
+
     const articleItems = records.map(item => (
         <div className="list-item" key={item.id} >
             <div className="item-img">
@@ -72,7 +96,7 @@ export default function List(props) {
             </div>
             <div className="item-intro">
                 <div data-articleid="{{item.id}}">
-                    <a href={`/detail?articleId=${item.id}`}><span className="item-title">{item.title}</span></a>
+                    <a onClick={ () => { goToDetail(item.id); }}><span className="item-title">{item.title}</span></a>
                 </div>
                 <div>
                     <span className="item-source">{item.author} | {item.time}</span>

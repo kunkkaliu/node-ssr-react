@@ -2,7 +2,7 @@
  * Created by liudonghui on 2018/6/11.
  */
 let apiHost = 'https://api.zudapang.ltd';
-let apiServerHost = 'https://api/zudapang.ltd';
+let apiServerHost = 'https://api.zudapang.ltd';
 
 if (process.env.CODE_ENV === 'qa') {
     apiHost = 'https://api.zudapang.ltd';
