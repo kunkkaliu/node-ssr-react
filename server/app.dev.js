@@ -36,8 +36,7 @@ const app = new Koa();
 const config = require('../build/webpack.dev.config');
 
 const compiler = webpack(config);
-let devMiddleWare;
-devMiddleWare = require('koa-webpack-dev-middleware')(compiler, {
+const devMiddleWare = require('koa-webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
     stats: {
         colors: true,
@@ -48,7 +47,7 @@ devMiddleWare = require('koa-webpack-dev-middleware')(compiler, {
     },
 });
 
-const filePath = path.join(config.output.path, 'view');
+const filePath = path.join(config.output.path, 'views');
 app.use(koaCompress({
     filter: function (content_type) {
         return /text|javascript/i.test(content_type);

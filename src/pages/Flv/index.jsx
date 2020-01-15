@@ -17,14 +17,14 @@ export default function Flv(props) {
     
     useEffect(() => {
 		// const url = 'http://yunxianchang.live.ujne7.com/vod-system-bj/TLaf2cc9d469939803949187b46da16c45.flv';
-		const url = 'https://zudapang.ltd/video';
+		const url = 'https://zudapang.ltd/video/flv/xgplayer-demo-360p.flv';
 		const player1 = new FlvJsPlayer({
 			el: myRef1.current,
 			width: 300,
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test1.flv`,
+			url,
 			playsinline: true,
 		});
 		const player2 = new FlvJsPlayer({
@@ -33,7 +33,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test2.flv`,
+			url,
 			playsinline: true,
 		});
 		const player3 = new FlvJsPlayer({
@@ -42,7 +42,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test3.flv`,
+			url,
 			playsinline: true,
 		});
 		const player4 = new FlvJsPlayer({
@@ -51,7 +51,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test4.flv`,
+			url,
 			playsinline: true,
 		});
 		const player5 = new FlvJsPlayer({
@@ -60,7 +60,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test5.flv`,
+			url,
 			playsinline: true,
 		});
 		const player6 = new FlvJsPlayer({
@@ -69,7 +69,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test6.flv`,
+			url,
 			playsinline: true,
 		});
 		const player7 = new FlvJsPlayer({
@@ -78,7 +78,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test7.flv`,
+			url,
 			playsinline: true,
 		});
 		const player8 = new FlvJsPlayer({
@@ -87,7 +87,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test8.flv`,
+			url,
 			playsinline: true,
 		});
 		const player9 = new FlvJsPlayer({
@@ -96,7 +96,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test9.flv`,
+			url,
 			playsinline: true,
 		});
 		const player10 = new FlvJsPlayer({
@@ -105,7 +105,7 @@ export default function Flv(props) {
 			height: 200,
 			autoplay: false,
 			isLive: false,
-			url: `${url}/test10.flv`,
+			url,
 			playsinline: true,
 		});
 		// player.start();
