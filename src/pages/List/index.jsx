@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MiniRefreshTools from '../../utils/mini-refresh';
 import { netApi as api } from '../../../server/network';
+import localStorageFix from '../../utils/localStorage';
 import globalConfig from '../../globalConfig';
 import './index.less';
 
@@ -11,6 +12,24 @@ export default function List(props) {
     const refreshRef = useRef(null);
     const fetchRef = useRef(null);
 
+    const mergeRecords = useCallback((oldRecords, newRecords) => {
+        const result = [];
+        for (let i = 0; i < oldRecords.length; i++) {
+            result.push(oldRecords[i]);
+        }
+        for (let i = 0; i < newRecords.length; i++) {
+            let flag = false;
+            for (let j = 0; j < oldRecords.length; j++) {
+                if (newRecords[i].id === oldRecords[j].id) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) result.push(newRecords[i]);
+        }
+        return result;
+    });
+    
     useEffect(() => {
         fetchRef.current = async (num) => {
             const curNum = num || pageNum;
@@ -22,7 +41,7 @@ export default function List(props) {
                 refreshRef.current.endDownLoading(true);
                 refreshRef.current.endUpLoading(false);
             });
-            const resData = res.data || {};
+            const resData = (res && res.data) || {};
             if (resData.code === 0) {
                 let contentItemList = records;
                 const list = resData.data || [];
@@ -36,7 +55,7 @@ export default function List(props) {
                     contentItemList = [];
                     refreshRef.current.endDownLoading(true);
                 }
-                setRecords(contentItemList.concat(list));
+                setRecords(mergeRecords(contentItemList, list));
                 setPageNum(hasMore ? curNum + 1 : curNum);
             } else {
                 refreshRef.current.endDownLoading(true);
@@ -52,6 +71,8 @@ export default function List(props) {
             isScrollBar: true,
             down: {
                 isAuto: false,
+                offset: 100,
+                dampRateBegin: 0.5,
                 callback: () => {
                     fetchRef.current(1);
                 },
@@ -66,26 +87,26 @@ export default function List(props) {
     }, []);
 
     useEffect(() => {
-        const storageRecords = localStorage.getItem('hotnews_records_key');
-        const storagePage = localStorage.getItem('hotnews_page_key');
-        const storageScrollTop = localStorage.getItem('hotnews_scrolltop_key');
+        const storageRecords = localStorageFix.getItem('hotnews_records_key');
+        const storagePageNum = localStorageFix.getItem('hotnews_pagenum_key');
+        const storageScrollTop = localStorageFix.getItem('hotnews_scrolltop_key');
 
         if (storageScrollTop && storageRecords) {
-            setRecords(JSON.parse(records));
+            setRecords(mergeRecords(props.records, JSON.parse(storageRecords)));
             // eslint-disable-next-line radix
-            setPageNum(parseInt(storagePage));
+            setPageNum(parseInt(storagePageNum));
+            setTimeout(() => {
+                // eslint-disable-next-line radix
+                refreshRef.current.scrollTo(parseInt(storageScrollTop), 0);
+                localStorageFix.removeItem('hotnews_scrolltop_key');
+            }, 0);
         }
-        setTimeout(() => {
-            // eslint-disable-next-line radix
-            refreshRef.current.scrollTo(parseInt(storageScrollTop), 1000);
-            localStorage.removeItem('hotnews_scrolltop_key');
-        }, 100);
     }, []);
 
     function goToDetail(id) {
-        localStorage.setItem('hotnews_records_key', JSON.stringify(records));
-        localStorage.setItem('hotnews_page_key', pageNum);
-        localStorage.setItem('hotnews_scrolltop_key', document.documentElement.scrollTop);
+        localStorageFix.setItem('hotnews_records_key', JSON.stringify(records));
+        localStorageFix.setItem('hotnews_pagenum_key', pageNum);
+        localStorageFix.setItem('hotnews_scrolltop_key', refreshRef.current.getPosition());
         window.location.href = `/detail?articleId=${id}`;
     }
 
