@@ -17,7 +17,7 @@ export default function Flv(props) {
     
     useEffect(() => {
 		// const url = 'http://yunxianchang.live.ujne7.com/vod-system-bj/TLaf2cc9d469939803949187b46da16c45.flv';
-		const url = 'https://zudapang.ltd/video/flv/xgplayer-demo-360p.flv';
+		const url = 'https://zudapang.ltd/video/test.flv';
 		const player1 = new FlvJsPlayer({
 			el: myRef1.current,
 			width: 300,
