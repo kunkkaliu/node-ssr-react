@@ -3,6 +3,7 @@ import MiniRefreshTools from '../../utils/mini-refresh';
 import { netApi as api } from '../../../server/network';
 import localStorageFix from '../../utils/localStorage';
 import globalConfig from '../../globalConfig';
+import Footer from '../../components/Footer';
 import './index.less';
 
 export default function List(props) {
@@ -127,12 +128,15 @@ export default function List(props) {
     ));
 
     return (
-        <div className="container minirefresh-wrap" ref={conRef}>
-            <div className="minirefresh-scroll">
-                <div className="list-items-wrap">
-                    {articleItems}
+        <div>
+            <div className="container minirefresh-wrap" ref={conRef}>
+                <div className="minirefresh-scroll">
+                    <div className="list-items-wrap">
+                        {articleItems}
+                    </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
