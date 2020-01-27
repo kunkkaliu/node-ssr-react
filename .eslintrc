@@ -107,6 +107,6 @@
   "globals": {
     "MOCK": false,
     "CODE_VERSION": false,
-    "logger": false,
+    "logger": false
   }
 }
