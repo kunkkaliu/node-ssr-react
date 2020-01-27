@@ -18,9 +18,9 @@ const listRouter = (router, koaCache) => {
         
         let useTime = new Date().getTime() - startTime;
         if (useTime > 500) {
-            logger.warn('api', `access /hotnews/list use ${useTime}ms`);
+            ctx.logger.warn('api', `access /hotnews/list use ${useTime}ms`);
         }
-        logger.info('api', `access /hotnews/list use ${useTime}ms`);
+        ctx.logger.info('api', `access /hotnews/list use ${useTime}ms`);
 
         let records = [];
         if (res && res.data && res.data.code === 0) records = res.data.data;

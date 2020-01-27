@@ -32,9 +32,9 @@ const detailRouter = (router, koaCache) => {
         
         let useTime = new Date().getTime() - startTime;
         if (useTime > 500) {
-            logger.warn('api', `access /hotnews/detail use ${useTime}ms`);
+            ctx.logger.warn('api', `access /hotnews/detail use ${useTime}ms`);
         }
-        logger.info('api', `access /hotnews/detail use ${useTime}ms`);
+        ctx.logger.info('api', `access /hotnews/detail use ${useTime}ms`);
         let title = '', content = '';
         const resData = res.data || {};
         if (resData.code === 0 && resData.data) {

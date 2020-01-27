@@ -13,7 +13,7 @@ const koaLogger = require('./middlewares/koa-logger');
 const koaRender = require('./middlewares/koa-render');
 const routeNotFound = require('./middlewares/route-notfound');
 
-global.logger = Logger({
+const logger = Logger({
     formatter(level, group, message) {
         const date = new Date();
         return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} [${level}] ${group}: ${message}`;

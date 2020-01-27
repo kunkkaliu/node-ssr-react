@@ -28,7 +28,7 @@ const config = require('../build/webpack.dev.config');
 const koaWebpackDevMiddleware = require('koa-webpack-dev-middleware');
 const koaWebpackHotMiddleware = require('koa-webpack-hot-middleware');
 
-global.logger = Logger({
+const logger = Logger({
     formatter(level, group, message) {
         const date = new Date();
         return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} [${level}] ${group} ${message}`;
