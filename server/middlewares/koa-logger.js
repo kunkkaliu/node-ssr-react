@@ -11,7 +11,6 @@ const koaLogger = (options) => {
         },
     });
     return async (ctx, next) => {
-        ctx.logger = logger;
         let startTime = new Date().getTime();
         await next();
         let useTime = new Date().getTime() - startTime;

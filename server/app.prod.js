@@ -21,7 +21,11 @@ global.logger = Logger({
 });
 
 const app = new Koa();
-const filePath = path.join(__dirname, '../dist/client/views');
+app.context.logger = logger;
+const basePath = path.join(__dirname, '../dist/client/views');
+koaRender(app, {
+    basePath,
+});
 app.use(koaCompress({
     filter: function (content_type) {
         return /text|javascript/i.test(content_type);
@@ -34,7 +38,6 @@ app.use(koaStatic(path.join(__dirname, '../dist/client')), {
 });
 app.use(koaParams());
 app.use(koaLogger());
-app.use(koaRender(filePath, false));
 app.use(router.routes()).use(router.allowedMethods());
 app.use(routeNotFound({
     redirect: '/',

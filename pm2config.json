@@ -7,12 +7,6 @@
             "env": {
                 "NODE_ENV": "production"
             },
-            "env_dev": {
-                "NODE_ENV": "development"
-            },
-            "env_production": {
-                "NODE_ENV": "production"
-            },
             "min_uptime": "60s",
             "max_restarts": 30,
             "watch": [

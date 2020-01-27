@@ -4,11 +4,19 @@
 const path = require('path');
 const fs = require('fs');
 
-const koaRender = (basePath, isDev, devMiddleWare) => async (ctx, next) => {
-    ctx.render = (templateName, renderContent, initialState) => {
+const defaultOptions = {
+    isDev: process.env.NODE_ENV !== 'production',
+};
+
+const koaRender = (app, options) => {
+    if (app.context.render) return;
+
+    options = Object.assign({}, defaultOptions, options);
+    const { isDev, basePath, devMiddleWare } = options;
+    app.context.render = function (templateName, renderContent, initialState) {
+        const ctx = this;
         const filePath = path.join(basePath, `${templateName}.html`);
         ctx.type = 'text/html';
-
         if (isDev) {
             const mfs = devMiddleWare.fileSystem;
             return new Promise((resolve) => {
@@ -36,7 +44,6 @@ const koaRender = (basePath, isDev, devMiddleWare) => async (ctx, next) => {
             });
         });
     };
-    await next();
 };
 
 module.exports = koaRender;

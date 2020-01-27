@@ -24,6 +24,9 @@ const koaLogger = require('./middlewares/koa-logger');
 const koaParams = require('./middlewares/koa-params');
 const koaRender = require('./middlewares/koa-render');
 const routeNotFound = require('./middlewares/route-notfound');
+const config = require('../build/webpack.dev.config');
+const koaWebpackDevMiddleware = require('koa-webpack-dev-middleware');
+const koaWebpackHotMiddleware = require('koa-webpack-hot-middleware');
 
 global.logger = Logger({
     formatter(level, group, message) {
@@ -33,10 +36,9 @@ global.logger = Logger({
 });
 
 const app = new Koa();
-const config = require('../build/webpack.dev.config');
-
+app.context.logger = logger;
 const compiler = webpack(config);
-const devMiddleWare = require('koa-webpack-dev-middleware')(compiler, {
+const devMiddleWare = koaWebpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
     stats: {
         colors: true,
@@ -46,8 +48,11 @@ const devMiddleWare = require('koa-webpack-dev-middleware')(compiler, {
         chunkModules: false,
     },
 });
-
-const filePath = path.join(config.output.path, 'views');
+const basePath = path.join(config.output.path, 'views');
+koaRender(app, {
+    basePath,
+    devMiddleWare,
+});
 app.use(koaCompress({
     filter: function (content_type) {
         return /text|javascript/i.test(content_type);
@@ -56,11 +61,9 @@ app.use(koaCompress({
     flush: require('zlib').Z_SYNC_FLUSH,
 }));
 app.use(devMiddleWare);
-app.use(require('koa-webpack-hot-middleware')(compiler));
-
+app.use(koaWebpackHotMiddleware(compiler));
 app.use(koaParams());
 app.use(koaLogger());
-app.use(koaRender(filePath, true, devMiddleWare));
 app.use(router.routes()).use(router.allowedMethods());
 app.use(routeNotFound({
     redirect: '/',
