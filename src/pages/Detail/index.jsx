@@ -20,7 +20,7 @@ const replaceDetail = (details) => {
 function Detail(props) {
     const [article, setArticle] = useState((props.ssrData && props.ssrData.article) || {});
 
-    // 单页面或者node服务降级为前端渲染时获取初始数据
+    // 单页面通过路由跳转到本页或者node服务降级为前端渲染时获取初始数据
     useEffect(() => {
         if (props.ssrData || process.env.REACT_ENV === 'server') return;
         const articleId = urlParams(window.location.href, 'articleId');
