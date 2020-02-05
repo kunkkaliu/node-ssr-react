@@ -15,8 +15,9 @@ const koaLogger = options => async (ctx, next) => {
     }
     if (useTime > 500) {
         ctx.logger.warn('access', `access url ${url} use ${useTime}ms`);
+    } else {
+        ctx.logger.info('access', `access url ${url} use ${useTime}ms`);
     }
-    ctx.logger.info('access', `access url ${url} use ${useTime}ms`);
 };
 
 module.exports = koaLogger;

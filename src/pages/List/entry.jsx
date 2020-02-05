@@ -7,7 +7,7 @@ import { hydrate } from 'react-dom';
 import 'common/less/base.less';
 import List from './index';
 
-hydrate(<List records={window.INITIAL_STATE.records} pageNum={window.INITIAL_STATE.pageNum} />, document.getElementById('root'));
+hydrate(<List ssrData={window.INITIAL_STATE && window.INITIAL_STATE.ssrData} />, document.getElementById('root'));
 
 if (module.hot) {
     module.hot.accept();

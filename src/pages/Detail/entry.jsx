@@ -7,7 +7,7 @@ import { hydrate } from 'react-dom';
 import 'common/less/base.less';
 import Detail from './index';
 
-hydrate(<Detail title={window.INITIAL_STATE.title} content={window.INITIAL_STATE.content} />, document.getElementById('root'));
+hydrate(<Detail ssrData={window.INITIAL_STATE && window.INITIAL_STATE.ssrData} />, document.getElementById('root'));
 
 if (module.hot) {
     module.hot.accept();

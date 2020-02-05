@@ -6,9 +6,9 @@ import globalConfig from '../../globalConfig';
 import Footer from '../../components/Footer';
 import './index.less';
 
-export default function List(props) {
-    const [records, setRecords] = useState(props.records || []);
-    const [pageNum, setPageNum] = useState(props.pageNum || 1);
+function List(props) {
+    const [records, setRecords] = useState((props.ssrData && props.ssrData.records) || []);
+    const [pageNum, setPageNum] = useState((props.ssrData && props.ssrData.pageNum) || 1);
     const conRef = useRef(null);
     const refreshRef = useRef(null);
     const fetchRef = useRef(null);
@@ -29,7 +29,18 @@ export default function List(props) {
             if (!flag) result.push(newRecords[i]);
         }
         return result;
-    });
+    }, []);
+
+    // 单页面或者node服务降级为前端渲染时获取初始数据
+    useEffect(() => {
+        if (props.ssrData || process.env.REACT_ENV === 'server') return;
+        List.getInitialProps({
+            pageNum: 1,
+        }).then((data) => {
+            setRecords(data.records);
+            setPageNum(1);
+        });
+    }, []);
     
     useEffect(() => {
         fetchRef.current = async (num) => {
@@ -140,3 +151,17 @@ export default function List(props) {
         </div>
     );
 }
+
+List.getInitialProps = async (params) => {
+    const res = await api.get('/hotnews/list', {
+        params,
+    }).catch((err) => {});
+    const resData = (res && res.data) || {};
+    let records = [];
+    if (resData.code === 0) records = resData.data || [];
+    return {
+        records,
+    };
+};
+
+export default List;
