@@ -14,9 +14,9 @@ const koaLogger = options => async (ctx, next) => {
         url = oldUrl.replace(`token=${token}`, 'token=xxx');
     }
     if (useTime > 500) {
-        logger.warn('access', `access url ${url} use ${useTime}ms`);
+        ctx.logger.warn('access', `access url ${url} use ${useTime}ms`);
     }
-    logger.info('access', `access url ${url} use ${useTime}ms`);
+    ctx.logger.info('access', `access url ${url} use ${useTime}ms`);
 };
 
 module.exports = koaLogger;
