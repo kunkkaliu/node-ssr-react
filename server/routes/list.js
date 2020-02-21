@@ -18,7 +18,10 @@ const listRouter = (router, koaCache) => {
         }
         const hasMore = data.records.length > 0;
         if (hasMore) pageNum += 1;
-        const renderContent = renderToString(<List records={data.records} pageNum={pageNum} />);
+        const renderContent = renderToString(<List ssrData={{
+            records: data.records,
+            pageNum: data.pageNum,
+        }} />);
         await ctx.render('list', renderContent, {
             ssrData: {
                 records: data.records,

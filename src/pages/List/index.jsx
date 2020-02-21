@@ -104,7 +104,7 @@ function List(props) {
         const storageScrollTop = localStorageFix.getItem('hotnews_scrolltop_key');
 
         if (storageScrollTop && storageRecords) {
-            setRecords(mergeRecords(props.records, JSON.parse(storageRecords)));
+            setRecords(mergeRecords(records, JSON.parse(storageRecords)));
             // eslint-disable-next-line radix
             setPageNum(parseInt(storagePageNum));
             setTimeout(() => {

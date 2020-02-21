@@ -18,9 +18,11 @@ const detailRouter = (router, koaCache) => {
         } else {
             ctx.logger.info('api', `access /hotnews/detail use ${useTime}ms`);
         }
-        const renderContent = renderToString(<Detail article={data.article} />);
+        const renderContent = renderToString(<Detail ssrData={{ article: data.article }} />);
         await ctx.render('detail', renderContent, {
-            ssrData: data.article,
+            ssrData: {
+                article: data.article,
+            },
         });
     });
 };
