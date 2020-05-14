@@ -31,7 +31,7 @@ module.exports = {
             'process.env': {
                 MOCK: !!process.env.MOCK,
                 CODE_ENV: JSON.stringify(process.env.CODE_ENV),
-                REACT_ENV: JSON.stringify(process.env.REACT_ENV)
+                RUN_ENV: JSON.stringify(process.env.RUN_ENV)
             }
         }),
         new UglifyJsPlugin({

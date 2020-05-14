@@ -3,7 +3,7 @@
  */
 const hybirdObj = {};
 
-if (process.env.REACT_ENV === 'client') {
+if (process.env.RUN_ENV === 'client') {
     Object.assign(hybirdObj, {
         isApp: /ios|android/i.test(window.navigator.userAgent),
     });

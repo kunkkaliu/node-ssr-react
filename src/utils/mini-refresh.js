@@ -1,7 +1,7 @@
 /* eslint-disable import/no-mutable-exports */
 let minirefresh = {};
 
-if (process.env.REACT_ENV === 'client') {
+if (process.env.RUN_ENV === 'client') {
     minirefresh = require('minirefresh');
 }
 

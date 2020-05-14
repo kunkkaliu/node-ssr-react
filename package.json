@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build_client": "cross-env REACT_ENV=client webpack --config ./build/webpack.prod.config.js --progress --colors",
-    "build_server": "cross-env REACT_ENV=server webpack --config ./build/webpack.server.config.js --progress --colors",
+    "build_client": "cross-env RUN_ENV=client webpack --config ./build/webpack.prod.config.js --progress --colors",
+    "build_server": "cross-env RUN_ENV=server webpack --config ./build/webpack.server.config.js --progress --colors",
     "build_dev": "rimraf ./dist && cross-env CODE_ENV=dev npm run build_client && cross-env CODE_ENV=dev npm run build_server",
     "build_qa": "rimraf ./dist && cross-env CODE_ENV=qa npm run build_client && cross-env CODE_ENV=qa npm run build_server",
     "build_online": "rimraf ./dist && cross-env CODE_ENV=online npm run build_client && cross-env CODE_ENV=online npm run build_server",
     "analyze": "cross-env ANALYZE=1 npm run build_client",
     "mock": "cross-env MOCK=1 npm run dev",
-    "dev": "cross-env CODE_ENV=dev REACT_ENV=server node ./server/app.dev.js --watch server --watch build",
+    "dev": "cross-env CODE_ENV=dev RUN_ENV=server node ./server/app.dev.js --watch server --watch build",
     "online": "pm2 start ./pm2config.json"
   },
   "author": "kunkkaliu",

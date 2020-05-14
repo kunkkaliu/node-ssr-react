@@ -30,7 +30,7 @@ base.plugins.push(
         'process.env': {
             MOCK: !!process.env.MOCK,
             CODE_ENV: JSON.stringify(process.env.CODE_ENV),
-            REACT_ENV: JSON.stringify('client')
+            RUN_ENV: JSON.stringify('client')
         }
     }),
     new webpack.HotModuleReplacementPlugin(),

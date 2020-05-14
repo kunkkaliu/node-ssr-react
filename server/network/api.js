@@ -17,7 +17,7 @@ const removePending = (config) => {
 };
 
 export const config = {
-    baseURL: process.env.REACT_ENV === 'server' ? globalConfig.apiServerHost : globalConfig.apiHost,
+    baseURL: process.env.RUN_ENV === 'server' ? globalConfig.apiServerHost : globalConfig.apiHost,
     withCredentials: false,
     timeout: 10000,
 };

@@ -22,7 +22,7 @@ function Detail(props) {
 
     // 单页面通过路由跳转到本页或者node服务降级为前端渲染时获取初始数据
     useEffect(() => {
-        if (props.ssrData || process.env.REACT_ENV === 'server') return;
+        if (props.ssrData || process.env.RUN_ENV === 'server') return;
         const articleId = urlParams(window.location.href, 'articleId');
         Detail.getInitialProps({
             articleId,
