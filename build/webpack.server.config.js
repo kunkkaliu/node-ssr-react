@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -32,21 +31,6 @@ module.exports = {
         MOCK: !!process.env.MOCK,
         CODE_ENV: JSON.stringify(process.env.CODE_ENV),
         RUN_ENV: JSON.stringify(process.env.RUN_ENV)
-      }
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: {
-          drop_debugger: true,
-          drop_console: true,
-          conditionals: true,
-          unused: true,
-          comparisons: true,
-          sequences: true,
-          dead_code: true,
-          evaluate: true,
-          if_return: true
-        }
       }
     })
   ],

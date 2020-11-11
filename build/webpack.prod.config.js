@@ -3,7 +3,6 @@
  */
 const webpack = require('webpack');
 const base = require('./webpack.config');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -40,22 +39,6 @@ base.plugins.push(
   }),
   new MiniCssExtractPlugin({
     filename: "static/css/[name].[contenthash].css"
-  }),
-  new UglifyJsPlugin({
-    sourceMap: true,
-    uglifyOptions: {
-      compress: {
-        drop_debugger: true,
-        drop_console: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true
-      }
-    }
   }),
   new webpack.HashedModuleIdsPlugin()
 );
