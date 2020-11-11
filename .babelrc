@@ -1,6 +1,6 @@
 {
   "presets": [[
-    "env", {
+    "@babel/preset-env", {
       "targets": {
         "browsers": [
           "> 1%",
@@ -11,9 +11,13 @@
         ]
       },
       "modules": false,
-      "useBuiltIns": true,
+      "useBuiltIns": false,
       "debug": false
     }
-  ], "react", "stage-0"],
-  "plugins": ["transform-runtime"]
+  ], "@babel/preset-react"],
+  "plugins": [[
+    "@babel/plugin-transform-runtime", {
+      "corejs": 3
+    }
+  ], "@babel/plugin-syntax-top-level-await"]
 }

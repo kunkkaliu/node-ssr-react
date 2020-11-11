@@ -7,3 +7,4 @@ npm-debug.log*
 .med/
 .kube/
 logs/
+*.log

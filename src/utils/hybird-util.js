@@ -4,9 +4,9 @@
 const hybirdObj = {};
 
 if (process.env.RUN_ENV === 'client') {
-    Object.assign(hybirdObj, {
-        isApp: /ios|android/i.test(window.navigator.userAgent),
-    });
+  Object.assign(hybirdObj, {
+    isApp: /ios|android/i.test(window.navigator.userAgent),
+  });
 }
 
 export default hybirdObj;
