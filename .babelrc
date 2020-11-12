@@ -19,5 +19,5 @@
     "@babel/plugin-transform-runtime", {
       "corejs": 3
     }
-  ], "@babel/plugin-syntax-top-level-await"]
+  ]]
 }

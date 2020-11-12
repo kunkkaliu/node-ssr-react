@@ -4,8 +4,20 @@
    */
   require('@babel/register')({
     ignore: [/\/(node_modules)\//],
-    presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['@babel/plugin-syntax-top-level-await'],
+    presets: [[
+      '@babel/preset-env', {
+        'targets': {
+          'node': 'current',
+        },
+        'useBuiltIns': false,
+        'debug': false,
+      },
+    ], '@babel/preset-react'],
+    plugins: [[
+      '@babel/plugin-transform-runtime', {
+        'corejs': 3,
+      },
+    ]],
   });
   require('./ignore')();
   require('asset-require-hook')({
