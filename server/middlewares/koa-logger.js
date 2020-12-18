@@ -2,7 +2,7 @@
  * Created by liudonghui on 2018/4/19.
  */
 
-const koaLogger = options => async (ctx, next) => {
+const koaLogger = (options) => async (ctx, next) => {
   let startTime = new Date().getTime();
   await next();
   let useTime = new Date().getTime() - startTime;
@@ -14,9 +14,9 @@ const koaLogger = options => async (ctx, next) => {
     url = oldUrl.replace(`token=${token}`, 'token=xxx');
   }
   if (useTime > 500) {
-    ctx.logger.warn('access', `access url ${url} use ${useTime}ms`);
+    ctx.logger.warn('[access]', `access url ${url} use ${useTime}ms`);
   } else {
-    ctx.logger.info('access', `access url ${url} use ${useTime}ms`);
+    ctx.logger.info('[access]', `access url ${url} use ${useTime}ms`);
   }
 };
 

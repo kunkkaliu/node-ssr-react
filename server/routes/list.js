@@ -12,9 +12,9 @@ const listRouter = (router, koaCache) => {
     const data = await List.getInitialProps();
     let useTime = new Date().getTime() - startTime;
     if (useTime > 500) {
-      ctx.logger.warn('api', `access /hotnews/list use ${useTime}ms`);
+      ctx.logger.warn('[api]', `access /hotnews/list use ${useTime}ms`);
     } else {
-      ctx.logger.info('api', `access /hotnews/list use ${useTime}ms`);
+      ctx.logger.info('[api]', `access /hotnews/list use ${useTime}ms`);
     }
     const hasMore = data.records.length > 0;
     if (hasMore) pageNum += 1;

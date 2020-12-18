@@ -31,7 +31,7 @@ function defaultFormatter(...args) {
 }
 
 const getLogger = (options) => {
-  options = Object.assign({ formatter: defaultFormatter }, options);
+  options = { formatter: defaultFormatter, ...options };
   const logger = {};
   Object.keys(logLevel).forEach((level) => {
     const logMethod = logLevel[level] >= 3 ? 'error' : logLevel[level] >= 2 ? 'warn' : 'log';

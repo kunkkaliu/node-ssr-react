@@ -14,9 +14,9 @@ const detailRouter = (router, koaCache) => {
     });
     let useTime = new Date().getTime() - startTime;
     if (useTime > 500) {
-      ctx.logger.warn('api', `access /hotnews/detail use ${useTime}ms`);
+      ctx.logger.warn('[api]', `access /hotnews/detail use ${useTime}ms`);
     } else {
-      ctx.logger.info('api', `access /hotnews/detail use ${useTime}ms`);
+      ctx.logger.info('[api]', `access /hotnews/detail use ${useTime}ms`);
     }
     const renderContent = renderToString(<Detail ssrData={{ article: data.article }} />);
     await ctx.render('detail', renderContent, {

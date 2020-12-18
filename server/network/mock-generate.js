@@ -20,7 +20,7 @@ function generateRoutes(context) {
       data: context(path),
     };
   });
-  return Object.keys(routes).map(k => routes[k]);
+  return Object.keys(routes).map((k) => routes[k]);
 }
 
 let mockRoutes = null;

@@ -22,6 +22,7 @@ const requireContext = (base = '.', scanSubDirectories = false, regularExpressio
   }
   readDirectory(path.resolve(__dirname, base));
   function Module(file) {
+    // eslint-disable-next-line import/no-dynamic-require
     return require(path.join(basePath, file));
   }
   Module.keys = () => Object.keys(files);

@@ -129,7 +129,7 @@ function List(props) {
       </div>
       <div className="item-intro">
         <div data-articleid="{{item.id}}">
-          <a onClick={() => { goToDetail(item.id); }}><span className="item-title">{item.title}</span></a>
+          <a role="button" onClick={() => { goToDetail(item.id); }}><span className="item-title">{item.title}</span></a>
         </div>
         <div>
           <span className="item-source">{item.author} | {item.time}</span>

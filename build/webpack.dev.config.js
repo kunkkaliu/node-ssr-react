@@ -6,6 +6,7 @@ const base = require('./webpack.config');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 base.mode = 'development';
+base.output.publicPath = 'http://127.0.0.1:9999/';
 // base.devtool = 'cheap-module-eval-source-map';
 Object.keys(base.entry).forEach(function (name) {
   base.entry[name] = ['webpack-hot-client/client?reload=true'].concat(base.entry[name]);
