@@ -8,7 +8,7 @@
         "NODE_ENV": "production"
       },
       "min_uptime": "60s",
-      "max_restarts": 30,
+      "max_restarts": 5,
       "watch": [
         "dist/"
       ],

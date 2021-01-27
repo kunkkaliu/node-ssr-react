@@ -2,4 +2,4 @@
 
 const MiniRefreshTools = require('./minirefresh.js');
 
-module.exports = MiniRefreshTools;
+export default MiniRefreshTools;
