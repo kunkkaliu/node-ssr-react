@@ -53,12 +53,12 @@ module.exports = {
               "targets": {
                 "node": "current"
               },
-              "modules": false,
+              "modules": 'commonjs',
               "useBuiltIns": false,
               "debug": false
             }
           ], "@babel/preset-react"],
-          "plugins": ['@babel/plugin-transform-modules-commonjs', [
+          "plugins": [[
             "@babel/plugin-transform-runtime", {
               "corejs": 3
             }

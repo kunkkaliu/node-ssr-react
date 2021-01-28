@@ -97,21 +97,18 @@
 
   flexible.dpr = win.dpr = dpr;
   flexible.refreshRem = refreshRem;
-  function rem2px(d) {
+  (flexible.rem2px = function (d) {
     var val = parseFloat(d) * this.rem;
     if (typeof d === 'string' && d.match(/rem$/)) {
       val += 'px';
     }
     return val;
-  }
-  flexible.rem2px = rem2px;
-  function px2rem(d) {
+  });
+  (flexible.px2rem = function (d) {
     var val = parseFloat(d) / this.rem;
     if (typeof d === 'string' && d.match(/px$/)) {
       val += 'rem';
     }
     return val;
-  }
-  flexible.px2rem = px2rem;
-
+  });
 })(window, window['lib'] || (window['lib'] = {}));
