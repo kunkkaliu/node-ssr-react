@@ -5,6 +5,7 @@ const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
 const InlineManifestWebpackPlugin = require('@insanecoding/inline-manifest-webpack-plugin');
 
 function resolve(dir) {
@@ -73,7 +74,7 @@ module.exports = {
     chunkFilename: 'static/js/[name].js',
     publicPath: '/'
   },
-  plugins: [].concat(HtmlPlugin, new InlineManifestWebpackPlugin('runtime')),
+  plugins: [].concat(new ESLintPlugin(), HtmlPlugin, new InlineManifestWebpackPlugin('runtime')),
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
@@ -85,12 +86,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
