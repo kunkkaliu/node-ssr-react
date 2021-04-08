@@ -1,3 +1,3 @@
 export default {
-  // nothing
+	// nothing
 };

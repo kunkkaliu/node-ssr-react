@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable global-require */
 /**
  * Created by liudonghui on 2017/11/4.
  */
@@ -11,31 +13,31 @@ import axios from 'axios';
  * @return {AxiosInstance}
  */
 export function generateNet(netConfig, useInterceptors) {
-  if (process.env.MOCK) {
-    const getMockInstance = require('./mock-generate').default;
-    const mock = getMockInstance();
-    netConfig.adapter = (request) => new Promise((resolve) => mock(request, (response) => {
-      setTimeout(() => {
-        if (typeof response.data === 'function') {
-          let { config: { method, params, data } } = response;
-          if (method === 'post') {
-            params = JSON.parse(data);
-          }
-          if (!params) {
-            params = {};
-          }
-          resolve({
-            ...response,
-            data: response.data(params),
-          });
-        } else {
-          resolve(response);
-        }
-      }, 500);
-    }));
-    netConfig.baseURL = '';
-  }
-  const netApi = axios.create(netConfig);
-  useInterceptors(netApi);
-  return netApi;
+	if (process.env.MOCK) {
+		const getMockInstance = require('./mock-generate').default;
+		const mock = getMockInstance();
+		netConfig.adapter = (request) => new Promise((resolve) => mock(request, (response) => {
+			setTimeout(() => {
+				if (typeof response.data === 'function') {
+					let { config: { method, params, data } } = response;
+					if (method === 'post') {
+						params = JSON.parse(data);
+					}
+					if (!params) {
+						params = {};
+					}
+					resolve({
+						...response,
+						data: response.data(params),
+					});
+				} else {
+					resolve(response);
+				}
+			}, 500);
+		}));
+		netConfig.baseURL = '';
+	}
+	const netApi = axios.create(netConfig);
+	useInterceptors(netApi);
+	return netApi;
 }

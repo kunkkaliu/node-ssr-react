@@ -9,5 +9,5 @@ import Flv from './index';
 hydrate(<Flv />, document.getElementById('root'));
 
 if (module.hot) {
-  module.hot.accept();
+	module.hot.accept();
 }

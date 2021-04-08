@@ -6,10 +6,10 @@ import { renderToString } from 'react-dom/server';
 import Login from '../../src/pages/Login';
 
 const loginRouter = (router, koaCache) => {
-  router.get('/login', koaCache(10 * 60), async (ctx, next) => {
-    const renderContent = renderToString(<Login />);
-    await ctx.render('login', renderContent);
-  });
+	router.get('/login', koaCache(10 * 60), async (ctx) => {
+		const renderContent = renderToString(<Login />);
+		await ctx.render('login', renderContent);
+	});
 };
 
 export default loginRouter;

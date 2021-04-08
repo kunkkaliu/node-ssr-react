@@ -14,7 +14,8 @@
     "analyze": "cross-env ANALYZE=1 npm run build_client",
     "mock": "cross-env MOCK=1 npm run dev",
     "dev": "cross-env CODE_ENV=dev RUN_ENV=server node ./server/app.dev.js --watch server --watch build",
-    "online": "pm2 start ./pm2config.json"
+    "pm2": "pm2 start ./pm2config.json",
+		"online": "cross-env NODE_ENV=production node ./dist/server/index.js"
   },
   "author": "kunkkaliu",
   "license": "ISC",

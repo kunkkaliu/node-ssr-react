@@ -2,8 +2,8 @@
 let nativeApi = {};
 
 if (process.env.RUN_ENV === 'client') {
-  // nativeApi = require('native-api');
-  nativeApi = {};
+	// nativeApi = require('native-api');
+	nativeApi = {};
 }
 
 export default nativeApi;

@@ -9,5 +9,5 @@ import Detail from './index';
 hydrate(<Detail ssrData={window.INITIAL_STATE && window.INITIAL_STATE.ssrData} />, document.getElementById('root'));
 
 if (module.hot) {
-  module.hot.accept();
+	module.hot.accept();
 }
