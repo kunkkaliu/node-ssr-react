@@ -2,11 +2,11 @@
  * Created by liudonghui on 2018/4/13.
  */
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrateRoot } from 'react-dom/client';
 import 'common/less/base.less';
 import Login from './index';
 
-hydrate(<Login></Login>, document.getElementById('root'));
+hydrateRoot(document.getElementById('root'), <Login></Login>);
 
 if (module.hot) {
 	module.hot.accept();

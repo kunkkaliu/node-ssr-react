@@ -15,7 +15,7 @@
     "mock": "cross-env MOCK=1 npm run dev",
     "dev": "cross-env CODE_ENV=dev RUN_ENV=server node ./server/app.dev.js --watch server --watch build",
     "pm2": "pm2 start ./pm2config.json",
-		"online": "cross-env NODE_ENV=production node ./dist/server/index.js"
+    "online": "cross-env NODE_ENV=production node ./dist/server/index.js"
   },
   "author": "kunkkaliu",
   "license": "ISC",
@@ -68,8 +68,8 @@
     "lru-cache": "^6.0.0",
     "minirefresh": "^2.0.2",
     "mockjs": "^1.1.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "supports-color": "^7.2.0"
   },
   "browserslist": [

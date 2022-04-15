@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { netApi as api } from '../../../server/network';
 import urlParams from '../../utils/params-util';
 import './index.less';
@@ -35,12 +35,12 @@ function Detail(props) {
 		<div className="container news_content">
 			{
 				(article.title && article.content)
-				&& <Fragment>
+				&& <>
 					<div className="t_newsinfo">{article.title}</div>
 					<div className="news_part_father">
 						<div dangerouslySetInnerHTML={{ __html: article.content }} className="news_part" />
 					</div>
-				</Fragment>
+				</>
 			}
 			{(!article.title || !article.content) && <div className="no-tip">暂不支持该类型文章</div>}
 

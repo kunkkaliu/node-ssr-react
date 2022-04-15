@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Fragment } from 'react';
+import React, { useRef, useEffect } from 'react';
 // import 'xgplayer';
 // import FlvPlayer from 'xgplayer-flv';
 
@@ -30,7 +30,7 @@ export default function Flv() {
 	}, []);
 
 	return (
-		<Fragment>
+		<>
 			<div ref={myRef1} className="flvplayer playback" style={{ float: 'left' }} />
 			<div ref={myRef2} className="flvplayer playback" style={{ float: 'left' }} />
 			<div ref={myRef3} className="flvplayer playback" style={{ float: 'left' }} />
@@ -41,6 +41,6 @@ export default function Flv() {
 			<div ref={myRef8} className="flvplayer playback" style={{ float: 'left' }} />
 			<div ref={myRef9} className="flvplayer playback" style={{ float: 'left' }} />
 			<div ref={myRef10} className="flvplayer playback" style={{ float: 'left' }} />
-		</Fragment>
+		</>
 	);
 }
